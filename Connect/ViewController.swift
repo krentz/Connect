@@ -149,15 +149,15 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
-        let characteristicUUID = CBUUID(string: "0783B03E-8535-B5A0-7140-A304D2495CBA")
-        let properties: CBCharacteristicProperties = [.notify, .read, .Write]
-        let permissions: CBAttributePermissions = [.readable, .writeable]
-        let characteristic = CBMutableCharacteristic(
-            type: characteristicUUID,
-            properties: properties,
-            value: nil,
-            permissions: permissions)
-        service.characteristics = characteristic
+//        let characteristicUUID = CBUUID(string: "0783B03E-8535-B5A0-7140-A304D2495CBA")
+//        let properties: CBCharacteristicProperties = [.notify, .read, .Write]
+//        let permissions: CBAttributePermissions = [.readable, .writeable]
+//        let characteristic = CBMutableCharacteristic(
+//            type: characteristicUUID,
+//            properties: properties,
+//            value: nil,
+//            permissions: permissions)
+//        service.characteristics = characteristic
         
         if let charactericsArr = service.characteristics{
             for charactericsx in charactericsArr{
