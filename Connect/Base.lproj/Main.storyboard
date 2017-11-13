@@ -44,19 +44,20 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="fqz-52-oU9"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WzS-Dz-Ngw">
-                                <rect key="frame" x="60" y="280" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-3v-1aN">
-                                <rect key="frame" x="201" y="279" width="99" height="30"/>
+                                <rect key="frame" x="60" y="286" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="send message"/>
                                 <connections>
                                     <action selector="refreshBLEWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JO2-Y1-hxs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4s6-xg-Wuk">
+                                <rect key="frame" x="197" y="286" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="see response"/>
+                                <connections>
+                                    <action selector="showResponse:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MPO-AO-ISq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -66,7 +67,6 @@
                     <navigationItem key="navigationItem" id="MZh-71-DQg"/>
                     <connections>
                         <outlet property="tableView" destination="dDc-EH-7S5" id="IPb-Q5-H8b"/>
-                        <outlet property="textField" destination="WzS-Dz-Ngw" id="FoT-J0-PuL"/>
                         <outlet property="textView" destination="77I-vE-5xy" id="15h-sW-oEU"/>
                         <segue destination="bdU-qN-KT5" kind="show" identifier="goConnect" id="YaH-zo-TdE"/>
                     </connections>
