@@ -17,7 +17,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var connectingCharac: CBCharacteristic?
 
     var peripherals = Array<CBPeripheral>()
-    var response = Array<String>()
+    var response = Array<UInt8>()
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -29,20 +29,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let value: [UInt8] = [0x5A, 0xFF, 0x00, 0x00, 0x05,0x03, 0x00, 0x00, 0x00,0x64,0x53,0x2C]
         let data = NSData(bytes: value, length: 12)
         print("\nValor enviado = \(data)")
-        
-//                let characteristicUUID = CBUUID(string: self.connectingCharac.uuid.uuidString)
-//                let properties: CBCharacteristicProperties = [.notify, .read, .write]
-//                let permissions: CBAttributePermissions = [.readable, .writeable]
-//                let characteristic = CBCharacteristic(
-//
-//                    type: characteristicUUID,
-//                    properties: properties,
-//                    value: nil,
-//                    permissions: permissions)
-//                //service.characteristics = characteristic
-//
-//
-//
         
         self.connectingPeripheral!.writeValue(data as Data, for: self.connectingCharac!, type: CBCharacteristicWriteType.withoutResponse)
     }
@@ -125,7 +111,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(central: CBCentralManager!,didConnectPeripheral peripheral: CBPeripheral!){
         peripheral.delegate = self
-        peripheral.discoverServices([CBUUID(string: "F000AA00-0451-4000-B000-000000000000")])   //all services  --logbox: 0783B03E-8535-B5A0-7140-A304D2495CB7
+        peripheral.discoverServices([CBUUID(string: "0783B03E-8535-B5A0-7140-A304D2495CB7")])   //all services  --logbox: 0783B03E-8535-B5A0-7140-A304D2495CB7
         output(description: "Connected", data: peripheral.name as AnyObject)
         
     }
@@ -195,10 +181,21 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         //converting "bytes" in string
         let string =  String(data: characteristic.value!, encoding: .utf8)
+        
+
+      //  let uint = UInt8(characteristic.value)
+        
         print("Resposta = \(String(describing: string))\n")
         
         if string != nil  && string!.range(of:"AOK") == nil{
-            self.response.append(string!)
+            for charc in characteristic.value!{
+                self.response.append(charc)
+            }
+        }
+        else if string == nil {
+            for charc in characteristic.value!{
+                self.response.append(charc)
+            }
         }
         
     }
