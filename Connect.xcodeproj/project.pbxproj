@@ -51,12 +51,21 @@
 			path = "BluetoothLeService-Modbus";
 			sourceTree = "<group>";
 		};
-		632DDD111FBE177400FC0042 /* Custom Cells */ = {
+		632DDD111FBE177400FC0042 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				632DDD121FBE17F300FC0042 /* HomeTableViewCell.swift */,
 			);
-			path = "Custom Cells";
+			path = Views;
+			sourceTree = "<group>";
+		};
+		632DDD181FBF01DA00FC0042 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6372381E1FBB61640033A3AB /* Controllers */,
+				632DDD111FBE177400FC0042 /* Views */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		6357CE0F1FB5B1E0007E64D5 = {
@@ -80,9 +89,8 @@
 		6357CE1A1FB5B1E0007E64D5 /* Connect */ = {
 			isa = PBXGroup;
 			children = (
-				632DDD111FBE177400FC0042 /* Custom Cells */,
 				6357CE1B1FB5B1E0007E64D5 /* AppDelegate.swift */,
-				6372381E1FBB61640033A3AB /* Controllers */,
+				632DDD181FBF01DA00FC0042 /* Home */,
 				63CEFA331FBDA95D0031F8A8 /* Models */,
 				632DDD0E1FBE158E00FC0042 /* BluetoothLeService-Modbus */,
 				6372381F1FBB61840033A3AB /* Storyboards */,

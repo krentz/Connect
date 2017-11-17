@@ -13,6 +13,7 @@
         <!--Home View Controller-->
         <scene sceneID="hM1-cI-pg6">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="67v-0R-RTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="67g-jO-Qwb" customClass="HomeViewController" customModule="Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4K-cd-ioK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -67,7 +68,6 @@
                         <viewLayoutGuide key="safeArea" id="ZJR-DT-pes"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="67v-0R-RTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="314" y="-642"/>
         </scene>
