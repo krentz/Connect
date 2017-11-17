@@ -31,21 +31,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.26207652688026428" green="0.59109389781951904" blue="0.97211253643035889" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQj-ob-KTg">
-                                <rect key="frame" x="263" y="107" width="80" height="90"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlr-w7-VGR">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="bluetooth1600"/>
-                                    </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YRi-rI-Bbs">
-                                        <rect key="frame" x="30" y="30" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlr-w7-VGR" userLabel="SerchBluetooth">
+                                <rect key="frame" x="264" y="107" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="bluetooth1600"/>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dfi-ny-llx">
                                 <rect key="frame" x="7" y="210" width="361" height="447"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,13 +56,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96470403671264648" green="0.96470439434051514" blue="0.96470272541046143" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="eQj-ob-KTg" firstAttribute="top" secondItem="ZJR-DT-pes" secondAttribute="top" constant="87" id="1JR-1O-GKz"/>
                             <constraint firstItem="dfi-ny-llx" firstAttribute="centerX" secondItem="fOj-sy-OJh" secondAttribute="centerX" id="7sh-Og-yF9"/>
-                            <constraint firstItem="eQj-ob-KTg" firstAttribute="leading" secondItem="ZJR-DT-pes" secondAttribute="leading" constant="263" id="Gar-uj-ble"/>
-                            <constraint firstItem="ZJR-DT-pes" firstAttribute="trailing" secondItem="eQj-ob-KTg" secondAttribute="trailing" constant="32" id="JvI-47-nvo"/>
                             <constraint firstItem="ZJR-DT-pes" firstAttribute="bottom" secondItem="dfi-ny-llx" secondAttribute="bottom" constant="10" id="NXr-CF-qgx"/>
                             <constraint firstItem="fOj-sy-OJh" firstAttribute="top" secondItem="t4K-cd-ioK" secondAttribute="top" id="Vzg-og-xDY"/>
-                            <constraint firstItem="dfi-ny-llx" firstAttribute="top" secondItem="eQj-ob-KTg" secondAttribute="bottom" constant="13" id="bsU-PS-FTl"/>
                             <constraint firstItem="ZJR-DT-pes" firstAttribute="trailing" secondItem="dfi-ny-llx" secondAttribute="trailing" constant="7" id="ix8-CS-xBL"/>
                             <constraint firstItem="fOj-sy-OJh" firstAttribute="leading" secondItem="t4K-cd-ioK" secondAttribute="leading" id="sse-Aj-Pib"/>
                             <constraint firstItem="dfi-ny-llx" firstAttribute="top" secondItem="fOj-sy-OJh" secondAttribute="bottom" constant="60" id="tfg-7l-nIZ"/>

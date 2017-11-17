@@ -10,11 +10,9 @@ import Foundation
 
 class Device{
     
-    override init(){
-         super.init()
-    }
-
-    static let sharedInstance = Device()
+    static let shared = Device()
+    
+   
     
     var address : String?
     
@@ -458,11 +456,9 @@ class Device{
     var SA_PASS1_5_6: Int? //3008
     var SA_PASS1_7_8: Int? //3009
     
-    //*******************************************
-    //public byte passwordArray[] = new byte[8];
-    var byte: [UInt8]
-    //let data = NSData(bytes: value, length: 12)
     
+    var passwordArray : [UInt8]? //8
+    var byte: [UInt8]?
     
     
     var downloadlastDate : Date?
@@ -482,13 +478,13 @@ class Device{
     var externalVoltage : Float?
     
     //*************************************
-    var title : UInt8 = [20]
+    var title : [UInt8]?
     
     var ble_en : Bool?
     var quality_RSSI : Int?
     
     //*************************************
-    //var byte ssid[] = new byte[8];
+    var ssid : [UInt8]? //8
     var regs_en : Bool?
     var memCircular : Bool?
     var chdEnabled : Bool?
@@ -497,13 +493,16 @@ class Device{
     
     //*************************************
     
-    //var byte ch1_tag[] = new byte[16];
-   // var byte ch1_unit_custom [] = new byte[16];
+    var ch_tag : [UInt8]?
+    var ch1_tag : [UInt8]?
+    var ch2_tag : [UInt8]?
+    var ch3_tag : [UInt8]?
+    
     
     var chd_unit_custom : [UInt8]?
     var ch1_unit_custom : [UInt8]?
     var ch2_unit_custom : [UInt8]?
-    
+    var ch3_unit_custom : [UInt8]?
     
     
     var ch1_LimitHigh : Float?
@@ -527,8 +526,7 @@ class Device{
     var ch3Enabled : Bool?
     //*************************************
     
-    //var byte ch3_tag[] = new byte[16];
-    //var byte ch3_unit_custom[] = new byte[16];
+    
     var ch3_LimitHigh : Float?
     var ch3_LimitLow : Float?
     var ch3AlarmHighEnabled : Bool?
@@ -684,222 +682,215 @@ class Device{
     
     //Douglas Maked
     //Método para aplicar número de casas decimais conforme configuração do equipamento
-    public String ApplyDecimalDigital (boolean isDigital, int NdecimalPlacesAfter, int NdecimalPlacesBefore, double value)
-{
-    String Fvalue = "";
-    String xplaces = "";
-    
-    if (isDigital)
-    {
-        if(NdecimalPlacesAfter == 0)//after
-        {
-            {
-                switch (NdecimalPlacesBefore)
-                {
-                case 6:
-                    xplaces = String.valueOf(NdecimalPlacesAfter);
-                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*1000000);
-                    break;
-                case 5:
-                    xplaces = String.valueOf(NdecimalPlacesAfter);
-                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*100000);
-                    break;
-                case 2:
-                    xplaces = String.valueOf(NdecimalPlacesAfter);
-                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*100);
-                    break;
-                case 1:
-                    xplaces = String.valueOf(NdecimalPlacesAfter);
-                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10);
-                    break;
-                }
-            }
-        }
-        else if (NdecimalPlacesAfter == 1)
-        {
-            switch (NdecimalPlacesBefore)
-            {
-            case 6:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*100000);
-                break;
-            case 5:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10000);
-                break;
-            case 2:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10);
-                break;
-            case 0:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10);
-                break;
-            }
-        }
-        else if (NdecimalPlacesAfter == 2)
-        {
-            switch (NdecimalPlacesBefore)
-            {
-            case 6:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10000);
-                break;
-            case 5:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*1000);
-                break;
-            case 1:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10);
-                break;
-            case 0:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/100);
-                break;
-            }
-        }
-        else if (NdecimalPlacesAfter == 5)
-        {
-            switch (NdecimalPlacesBefore)
-            {
-            case 6:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10);
-                break;
-            case 2:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/1000);
-                break;
-            case 1:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10000);
-                break;
-            case 0:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/100000);
-                break;
-            }
-        }
-        else if (NdecimalPlacesAfter == 6)
-        {
-            switch (NdecimalPlacesBefore)
-            {
-            case 5:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10);
-                break;
-            case 2:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10000);
-                break;
-            case 1:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/100000);
-                break;
-            case 0:
-                xplaces = String.valueOf(NdecimalPlacesAfter);
-                Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/1000000);
-                break;
-            }
-        }
+    func ApplyDecimalDigital (isDigital : Bool, NdecimalPlacesAfter : Int, NdecimalPlacesBefore : Int, value : Double) { //}-> String {
+//        String Fvalue = "";
+//        String xplaces = "";
+//
+//        if (isDigital)
+//        {
+//            if(NdecimalPlacesAfter == 0)//after
+//            {
+//                {
+//                    switch (NdecimalPlacesBefore)
+//                    {
+//                    case 6:
+//                        xplaces = String.valueOf(NdecimalPlacesAfter);
+//                        Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*1000000);
+//                        break;
+//                    case 5:
+//                        xplaces = String.valueOf(NdecimalPlacesAfter);
+//                        Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*100000);
+//                        break;
+//                    case 2:
+//                        xplaces = String.valueOf(NdecimalPlacesAfter);
+//                        Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*100);
+//                        break;
+//                    case 1:
+//                        xplaces = String.valueOf(NdecimalPlacesAfter);
+//                        Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10);
+//                        break;
+//                    }
+//                }
+//            }
+//            else if (NdecimalPlacesAfter == 1)
+//            {
+//                switch (NdecimalPlacesBefore)
+//                {
+//                case 6:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*100000);
+//                    break;
+//                case 5:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10000);
+//                    break;
+//                case 2:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10);
+//                    break;
+//                case 0:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10);
+//                    break;
+//                }
+//            }
+//            else if (NdecimalPlacesAfter == 2)
+//            {
+//                switch (NdecimalPlacesBefore)
+//                {
+//                case 6:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10000);
+//                    break;
+//                case 5:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*1000);
+//                    break;
+//                case 1:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10);
+//                    break;
+//                case 0:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/100);
+//                    break;
+//                }
+//            }
+//            else if (NdecimalPlacesAfter == 5)
+//            {
+//                switch (NdecimalPlacesBefore)
+//                {
+//                case 6:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value*10);
+//                    break;
+//                case 2:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/1000);
+//                    break;
+//                case 1:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10000);
+//                    break;
+//                case 0:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/100000);
+//                    break;
+//                }
+//            }
+//            else if (NdecimalPlacesAfter == 6)
+//            {
+//                switch (NdecimalPlacesBefore)
+//                {
+//                case 5:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10);
+//                    break;
+//                case 2:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/10000);
+//                    break;
+//                case 1:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/100000);
+//                    break;
+//                case 0:
+//                    xplaces = String.valueOf(NdecimalPlacesAfter);
+//                    Fvalue = String.format(Locale.US,"%.0"+xplaces+"f",value/1000000);
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return String.format(Locale.US,Fvalue, value);
     }
     
-    return String.format(Locale.US,Fvalue, value);
+    func ApplyDecimalPlaceF (isDigital : Bool, sensorType : Int, NdecimalPlaces : Int, value : Int) { //-> Double{
+//        var Fvalue = 0.0
+//
+//        if (isDigital){   //aplica formula para passar de contagem para float
+//            Fvalue =  countsToUserUnits(value ,this.chd_multCoeff, this.chd_scaleCoeff,this.HR_CS_CHD_SENSOR_UNIT, this.interval);
+//            //Fvalue = (double) value/(Math.pow(10, NdecimalPlaces));
+//        }
+//        else{
+//            //Pt100 , ThermoCouple K , ThermoCouple J, ThermoCouple R
+//            //ThermoCouple S, ThermoCouple T, ThermoCouple N, ThermoCouple E, ThermoCouple B e Cold Junction
+//            if (SensorType >= 1 && SensorType <= 9 || SensorType == 15){
+//                Fvalue = (double) value/10;
+//            }
+//
+//                //Battery Voltage, External Source Voltage
+//            else if(SensorType > 15){
+//                Fvalue = (double) value/100;
+//            }
+//
+//            // Lineares
+//            else
+//            Fvalue = (double) value/( Math.pow(10, NdecimalPlaces));
+//        }
+//
+//        return Fvalue;
     }
     
-    public double ApplyDecimalPlaceF (boolean isDigital, int SensorType, int NdecimalPlaces, int value)
-{
-    double Fvalue = 0;
-    
-    if (isDigital)
-    {   //aplica formula para passar de contagem para float
-        Fvalue =  CountsToUserUnits(value ,this.chd_multCoeff, this.chd_scaleCoeff,this.HR_CS_CHD_SENSOR_UNIT, this.interval);
-        //Fvalue = (double) value/(Math.pow(10, NdecimalPlaces));
-    }
-    else
-    {
-        //Pt100 , ThermoCouple K , ThermoCouple J, ThermoCouple R
-        //ThermoCouple S, ThermoCouple T, ThermoCouple N, ThermoCouple E, ThermoCouple B e Cold Junction
-        if (SensorType >= 1 && SensorType <= 9 || SensorType == 15)
-        {
-            Fvalue = (double) value/10;
-        }
-            
-            //Battery Voltage, External Source Voltage
-        else if(SensorType > 15)
-        {
-            Fvalue = (double) value/100;
-        }
-        
-        // Lineares
-        else
-        Fvalue = (double) value/( Math.pow(10, NdecimalPlaces));
+    func formatValue(value : Double, decimalPlaces : Int) { //} -> String{
+//        String xplaces = String.valueOf(decimalPlaces)
+//        return String.format(Locale.US,"%.0"+xplaces+"f",value)
     }
     
-    return Fvalue;
-    }
-    
-    public String FormatValue(double value, int decimalPlaces){
-        String xplaces = String.valueOf(decimalPlaces);
-        return String.format(Locale.US,"%.0"+xplaces+"f",value);
-    }
-    
-    public  String FormatFloat(int decimalPlaces){
-        String xplaces = String.valueOf(decimalPlaces);
-        String formatFloat = "%.0"+xplaces+"f";
-        return formatFloat;
+    func formatFloat(decimalPlaces : Int) { //-> String{
+//        String xplaces = String.valueOf(decimalPlaces)
+//        String formatFloat = "%.0"+xplaces+"f"
+//        return formatFloat
     }
     
     
-    
-    public float[] Digital_User_Unit_Flow_Table = new float[]  {
+    var digital_User_Unit_Flow_Table : [Float] = [
         1                          //l/s,
         , 60                         //l/min,
         , 3600                       //l/h,
-        , (float) 0.264172052       //gal/s,
-        , (float) 15.8503231        //gal/min,
-        , (float) 951.019388        //gal/h,
-        , (float) 0.001             //m³/s,
-        , (float) 0.06              //m³/min,
-        , (float) 3.6              //m³/h
-        , 1};                       //Default
-    
-    
-    private float[] Digital_Sensor_Unit_Table = new float[]{
+        , 0.264172052       //gal/s,
+        , 15.8503231        //gal/min,
+        , 951.019388        //gal/h,
+        , 0.001             //m³/s,
+        , 0.06              //m³/min,
+        , 3.6              //m³/h
+        , 1
+    ]                       //Default
+        
+    var digital_Sensor_Unit_Table : [Float] = [
         1,                        //    pulses/l,
-        (float) 3.78541178,        //     pulses/gal,
+        3.78541178,        //     pulses/gal,
         1000,                    //    pulses/m³,
         1,                        //  default
-    };
+    ]
     
     
-    
-    public float CountsToUserUnits(int Counts, float GaugeFactor, float ScaleFactor, int SensorUnit, int LoggingInterval)
-{
-    float fTemp;
-    
-    double dGauge = (GaugeFactor != 0 ? GaugeFactor : 1);
-    
-    try {
-    //fTemp = ((((float)u32Counts)/(dGauge*Digital_Sensor_Unit_Table[stChannel[u8Channel].u8SensorUnit]))/Fu16LoggingInterval)*stChannel[u8Channel].fScaleFactor;
-    fTemp = (float) (((((float) Counts) / (dGauge * Digital_Sensor_Unit_Table[SensorUnit])) / LoggingInterval) * ScaleFactor);
+    // *****************************************************************************
+    //a principio nao e usado
+    func countsToUserUnits(counts : Int, gaugeFactor : Float, scaleFactor : Float, sensorUnit : Int, loggingInterval : Int) { //-> Float{
+//        float fTemp;
+//
+//        double dGauge = (GaugeFactor != 0 ? GaugeFactor : 1);
+//
+//        try {
+//        //fTemp = ((((float)u32Counts)/(dGauge*Digital_Sensor_Unit_Table[stChannel[u8Channel].u8SensorUnit]))/Fu16LoggingInterval)*stChannel[u8Channel].fScaleFactor;
+//        fTemp = (float) (((((float) Counts) / (dGauge * Digital_Sensor_Unit_Table[SensorUnit])) / LoggingInterval) * ScaleFactor);
+//        }
+//        catch (Exception e)
+//        {
+//        fTemp = 0;
+//        }
+//
+//        return fTemp;
     }
-    catch (Exception e)
-    {
-    fTemp = 0;
-    }
-    
-    return fTemp;
-    }
     
     
-    func UserUnitToCounts(fValue : Float, scaleFactor : Float, gaugeFactor : Float, loggingInterval : Int, sensorUnit : Int) -> Int{
-        var uTemp : Int?
-        var dScaleFac : Float = (scaleFactor != 0 ? scaleFactor : 1)
-    
-        uTemp = (int) (gaugeFactor * Digital_Sensor_Unit_Table[SensorUnit] * (LoggingInterval*(fValue/dScaleFac)))
-        return uTemp
+    func UserUnitToCounts(fValue : Float, scaleFactor : Float, gaugeFactor : Float, loggingInterval : Int, sensorUnit : Int) { //-> Int{
+//        var uTemp : Int?
+//        var dScaleFac : Float = (scaleFactor != 0 ? scaleFactor : 1)
+//
+//        uTemp = (int) (gaugeFactor * Digital_Sensor_Unit_Table[sensorUnit] * (loggingInterval*(fValue/dScaleFac)))
+//        return uTemp
     }
     
     var tz = [
@@ -1179,102 +1170,92 @@ class Device{
     
     
     //Ajusta tempo em UTC para o GMT configurado no LogBox
-    public Date getTimewithGMT(int min, Date data){
-        Calendar date = Calendar.getInstance();
-        date.setTime(data);
-        
-        long t = date.getTimeInMillis();
-        
-        Date afterAddingMins=new Date(t + (min * ONE_MINUTE_IN_MILLIS));
-        
-        return afterAddingMins;
+    func getTimewithGMT(min : Int, data: Date){ //-> Date{
+//        Calendar date = Calendar.getInstance();
+//        date.setTime(data);
+//
+//        long t = date.getTimeInMillis();
+//
+//        Date afterAddingMins=new Date(t + (min * ONE_MINUTE_IN_MILLIS));
+//
+  //      return afterAddingMins;
     }
     
     func getTitle() -> String{
         
-        //public byte passwordArray[] = new byte[8];
-        var byte : [UInt8]
-        //let data = NSData(bytes: value, length: 12)
-        
-        String s = new String(new byte[]{title[0], title[1], title[2], title[3], title[4], title[5], title[6], title[7], title[8], title[9],
-            title[10], title[11], title[12], title[13], title[14], title[15], title[16], title[17], title[18], title[19]})
-        
-        s = s.trim()
-        
-        return s
+        let getDataFromBytes = NSData(bytes: title , length: 20)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
+       
     }
     
     func getStringSum(b : [UInt8]) -> Int{
+        
         var sum = 0
         for i in 0 ... b.count {
-            sum = Int(sum + b[i])
+            sum = Int(b[i]) + sum
         }
     
         return sum
     
     }
     
-    public String getSSID(){
-        String s = new String(new byte[]{ssid[0], ssid[1], ssid[2], ssid[3], ssid[4], ssid[5], ssid[6], ssid[7]});
-        s = s.trim();
-        
-        return s;
+    func getSSID() -> String{
+        let getDataFromBytes = NSData(bytes: ssid , length: 20)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
     }
     
     //Maked Douglas
-    public String getPassword(){
-        String s = new String(new byte[]{passwordArray[0], passwordArray[1], passwordArray[2], passwordArray[3],
-            passwordArray[4], passwordArray[5], passwordArray[6], passwordArray[7]});
-        s = s.trim();
-        
-        return s;
+    func getPassword() -> String{
+        let getDataFromBytes = NSData(bytes: passwordArray , length: 8)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
     }
     
     
-    public String getCh1Tag(){
-        String s = new String(new byte[]{ch1_tag[0], ch1_tag[1], ch1_tag[2], ch1_tag[3], ch1_tag[4], ch1_tag[5], ch1_tag[6], ch1_tag[7]});
-        s = s.trim();
-        
-        return s;
+    func getCh1Tag() -> String{
+        let getDataFromBytes = NSData(bytes: ch1_tag , length: 16)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
     }
     
-    public String getCh2Tag(){
-        String s = new String(new byte[]{ch2_tag[0], ch2_tag[1], ch2_tag[2], ch2_tag[3], ch2_tag[4], ch2_tag[5], ch2_tag[6], ch2_tag[7]});
-        s = s.trim();
-        
-        return s;
+    func getCh2Tag() -> String{
+        let getDataFromBytes = NSData(bytes: ch2_tag , length: 16)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
     }
     
-    public String getCh3Tag(){
-        String s = new String(new byte[]{ch3_tag[0], ch3_tag[1], ch3_tag[2], ch3_tag[3], ch3_tag[4], ch3_tag[5], ch3_tag[6], ch3_tag[7]});
-        s = s.trim();
-        
-        return s;
+    func getCh3Tag() -> String{
+        let getDataFromBytes = NSData(bytes: ch3_tag , length: 16)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
     }
     
-    public String getChdTag(){
-        String s = new String(new byte[]{chd_tag[0], chd_tag[1], chd_tag[2], chd_tag[3], chd_tag[4], chd_tag[5], chd_tag[6], chd_tag[7]});
-        s = s.trim();
-        
-        return s;
+    func getChdTag() -> String{
+        let getDataFromBytes = NSData(bytes: ch_tag , length: 16)
+        let dataString = NSString(data: getDataFromBytes as Data, encoding: String.Encoding.utf8.rawValue)
+        return dataString! as String
     }
     
-    public byte[] shift(byte[] bytes, int index){
-        byte [] temp = new byte[16-index];
-        temp = bytes;
-        byte [] ret = new byte[16];
-        int j = 0;
-        
-        bytes[index] = (byte)0xC2;
-        
-        for(int i = index+1; i < bytes.length; i++){
-            bytes[i] = temp[i-1];
-        }
-        for(int i = 0; i < 16; i++){
-            ret[i] = bytes[i];
-        }
-        return ret;
-    }
+    //**********************************************
+    //??
+//    public byte[] shift(byte[] bytes, int index){
+//        byte [] temp = new byte[16-index];
+//        temp = bytes;
+//        byte [] ret = new byte[16];
+//        int j = 0;
+//
+//        bytes[index] = (byte)0xC2;
+//
+//        for(int i = index+1; i < bytes.length; i++){
+//            bytes[i] = temp[i-1];
+//        }
+//        for(int i = 0; i < 16; i++){
+//            ret[i] = bytes[i];
+//        }
+//        return ret;
+//    }
     
     
     //**********************************************
