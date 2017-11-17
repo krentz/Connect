@@ -12,15 +12,22 @@ class Device{
     
     static let shared = Device()
     
-   
+    //*************************************
+    //construtor
+    //    public Device()
+    //    init(){
+    //        for(int i=0;i<20;i++){
+    //            title[i] = 0;
+    //        }
+    //    }
+    
     
     var address : String?
     
-    static var DIGITAL_COUNTER : Int = 1
-    static var DIGITAL_EVENT_LOG : Int = 2
-    static var DIGITAL_LOG_CONTROL : Int = 3
-    static var DAYS_DIFERENCE : Int = 25569
-    static var MILLIS_PER_DAY : Int = 86400000
+    static let DIGITAL_COUNTER : Int = 1
+    static let DIGITAL_EVENT_LOG : Int = 2
+    static let DAYS_DIFERENCE : Int = 25569
+    static let MILLIS_PER_DAY : Int = 86400000
     
     var smartphoneTimeZone : String = "UTC"
     
@@ -148,10 +155,6 @@ class Device{
     var BLE_HR_SS_EXTERNAL_VOLTAGE_VALUE_MIN : Int?
     var BLE_HR_SS_EXTERNAL_VOLTAGE_VALUE_MAX : Int?
     var HR_SS_RESERVED_52 : Int?
-    var HR_SS_RESERVED_53 : Int?
-    var HR_SS_RESERVED_54 : Int?
-    var HR_SS_RESERVED_55 : Int?
-    var HR_SS_RESERVED_56 : Int?
     
     
     var dayIni : UInt8?
@@ -161,12 +164,8 @@ class Device{
     var minuteIni : UInt8?
     var secondIni : UInt8?
    
-    var aqt : Int = 0
     var samplesNumber : Int = 0
     var channelsEnabled : Int?
-    
-    //**********************************
-    //var DirectoryName : String = Environment.getExternalStorageDirectory() + "/LogChart-BLE/"
     
     
     //Registradores de Configuração
@@ -260,11 +259,11 @@ class Device{
     var BLE_HR_CS_CHD_ENABLE : Int? //1087
     
     var chd_inpuType : Int?
-    var HR_CS_CHD_COUNTING_MODE : Int = 0
+   
     var chd_sensorType : Int?
-    var HR_CS_CHD_SENSOR_TYPE : Int = 0
+   
     var chd_countEdge : Int?
-    var HR_CS_CHD_COUNTING_EDGE : Int = 0
+    
     var HR_CS_CHD_DEBOUNCE_TIME_ms : Int?
     var HR_CS_CHD_SENSOR_FACTOR_float_High : Int?
     var HR_CS_CHD_SENSOR_FACTOR_float_Low : Int? //1093
@@ -272,7 +271,6 @@ class Device{
     var HR_CS_CHD_USER_SCALE_FACTOR_float_High : Int?
     var HR_CS_CHD_USER_SCALE_FACTOR_float_Low : Int?
     var chd_unit : Int?
-    var HR_CS_CHD_USER_UNIT : Int = 0  //1097
     var BLE_HR_CS_CHD_ENABLE_ALARM_MIN : Int?
     var BLE_HR_CS_CHD_ENABLE_ALARM_MAX : Int?
     var BLE_HR_CS_CHD_ALARM_MIN : Int?
@@ -474,30 +472,21 @@ class Device{
     var logsDownloaded : Int?
     var digiEventsLogsDownloaded : Int?
     var statusOfRecords : Int?
-    var batteryCharge : Int?
-    var externalVoltage : Float?
-    
-    //*************************************
+   
     var title : [UInt8]?
-    
     var ble_en : Bool?
-    var quality_RSSI : Int?
     
-    //*************************************
     var ssid : [UInt8]? //8
     var regs_en : Bool?
     var memCircular : Bool?
     var chdEnabled : Bool?
     var startStopByButton : Bool?
     var ch1Enabled : Bool?
-    
-    //*************************************
-    
+ 
     var ch_tag : [UInt8]?
     var ch1_tag : [UInt8]?
     var ch2_tag : [UInt8]?
     var ch3_tag : [UInt8]?
-    
     
     var chd_unit_custom : [UInt8]?
     var ch1_unit_custom : [UInt8]?
@@ -513,9 +502,7 @@ class Device{
     var ch1AlarmLow : Float?
     var ch1UserOffset : Float?
     var ch2Enabled : Bool?
-    //*************************************
-  //  var byte ch2_tag[] = new byte[16];
-    //var byte ch2_unit_custom[] = new byte[16];
+    
     var ch2_LimitHigh : Float?
     var ch2_LimitLow : Float?
     var ch2AlarmHighEnabled : Bool?
@@ -524,8 +511,6 @@ class Device{
     var ch2AlarmLow : Float?
     var ch2UserOffset : Float?
     var ch3Enabled : Bool?
-    //*************************************
-    
     
     var ch3_LimitHigh : Float?
     var ch3_LimitLow : Float?
@@ -534,12 +519,8 @@ class Device{
     var ch3AlarmHigh : Float?
     var ch3AlarmLow : Float?
     var ch3UserOffset : Float?
-    //*************************************
     
-    // var byte chd_tag[] = new byte[16];
-    //var byte chd_unit_custom [] = new byte[16];
     var chd_multCoeff : Float? = 0
-    var chd_multCoeff_custom : Float?
     var chd_scaleCoeff : Float?
     var chd_n_decimal : Int?
     var chdAlarmHighEnabled : Bool?
@@ -548,15 +529,10 @@ class Device{
     var chdAlarmLow : Float?
     var chdAlarmHighHyst : Float?
     var chdAlarmLowHyst : Float?
-    var chdUserOffset : Float?
     var downloadPointer : Int = 0
     var digitalEventsPointer  : Int = 0
     var downloadEnd : Bool = false
-    //*************************************
-    
-    // var Channel channels[];
-    //var Channel digitalChannel;
-    //var Channel channelsToGraph[];
+ 
     var  isSaveFiles : Bool = false
     var  isExportChart : Bool?
     var  isExportCSV : Bool?
@@ -569,25 +545,11 @@ class Device{
     
     static var ONE_MINUTE_IN_MILLIS : Float = 60000 //millisecs
     
-    
-    //*************************************
-    //construtor
-//    public Device()
-//    init(){
-//        for(int i=0;i<20;i++){
-//            title[i] = 0;
-//        }
-//    }
-    
-    
     func setSaveFiles(saveFiles : Bool) {
         self.isSaveFiles = saveFiles
     }
     
-    func setExportChart(exportChart : Bool) {
-        isExportChart = exportChart
-    }
-    
+   
     func setExportCSV(exportCSV : Bool) {
         isExportCSV = exportCSV
     }
@@ -630,24 +592,7 @@ class Device{
       //  return (javaMillis / (double) MILLIS_PER_DAY) + DAYS_DIFERENCE;
    // }
     
-    /**
-     * Converte um instante de tempo do formato do <B>Delphi</B> para o formato
-     * do <B>Java</B><BR>
-     * <BR>
-     * - No <B>Delphi</B> o instante é um <B>double</B> cuja <B>parte
-     * inteira</B> corresponde a <B>quantidade de dias</B> que se passaram
-     * <B>desde 30/12/1899</B> e a <B>parte fracionária</B> é uma <B>fração das
-     * 24 horas de um dia</B><BR>
-     * <BR>
-     * - No <B>Java</B> o instante é um <B>long</B> que corresponde a
-     * <B>quantidade de milisegundos</B> que passaram <B>desde 01/01/1970</B>
-     */
-    //************************************************************************************
-    
-//    public static long toJava(final double delphiDays) {
-//        return Math.round((delphiDays - DAYS_DIFERENCE) * MILLIS_PER_DAY);
-//    }
-//
+  
     
 //    public long apllyOffsetBeetwennTimezones(long date_){
 //        long date = date_;//Date em UTC
@@ -1238,25 +1183,7 @@ class Device{
         return dataString! as String
     }
     
-    //**********************************************
-    //??
-//    public byte[] shift(byte[] bytes, int index){
-//        byte [] temp = new byte[16-index];
-//        temp = bytes;
-//        byte [] ret = new byte[16];
-//        int j = 0;
-//
-//        bytes[index] = (byte)0xC2;
-//
-//        for(int i = index+1; i < bytes.length; i++){
-//            bytes[i] = temp[i-1];
-//        }
-//        for(int i = 0; i < 16; i++){
-//            ret[i] = bytes[i];
-//        }
-//        return ret;
-//    }
-    
+
     
     //**********************************************
     //tratar nil
