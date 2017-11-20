@@ -182,10 +182,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         //converting "bytes" in string
         let string =  String(data: characteristic.value!, encoding: .utf8)
         
-
-      //  let uint = UInt8(characteristic.value)
         
         print("Resposta = \(String(describing: string))\n")
+        
+        if((string!.range(of:"AOK")) != nil){
+            //começar a ler registros
+        }
+        
+        
         
         if string != nil  && string!.range(of:"AOK") == nil{
             for charc in characteristic.value!{
