@@ -13,7 +13,6 @@
         <!--Home View Controller-->
         <scene sceneID="hM1-cI-pg6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="67v-0R-RTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="67g-jO-Qwb" customClass="HomeViewController" customModule="Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4K-cd-ioK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -30,12 +29,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.26207652688026428" green="0.59109389781951904" blue="0.97211253643035889" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.0" green="0.34914052486419678" blue="0.83653897047042847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlr-w7-VGR" userLabel="SerchBluetooth">
                                 <rect key="frame" x="264" y="107" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="bluetooth1600"/>
+                                <state key="normal" backgroundImage="BluetoothButton"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dfi-ny-llx">
                                 <rect key="frame" x="7" y="210" width="361" height="447"/>
@@ -68,6 +67,7 @@
                         <viewLayoutGuide key="safeArea" id="ZJR-DT-pes"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="67v-0R-RTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="314" y="-642"/>
         </scene>
@@ -171,6 +171,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bluetooth1600" width="800" height="800"/>
+        <image name="BluetoothButton" width="501" height="501"/>
     </resources>
 </document>

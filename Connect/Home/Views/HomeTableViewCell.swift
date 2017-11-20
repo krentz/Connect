@@ -6,4 +6,9 @@
 //  Copyright © 2017 Rafael Goncalves. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class HomeTableViewCell: UITableViewCell {
+    
+}
+

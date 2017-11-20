@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3CA9AE8B1FC206A100E8731F /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA9AE8A1FC206A100E8731F /* HomeTableViewCell.xib */; };
+		3CA9AE8D1FC2078100E8731F /* StoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA9AE8C1FC2078100E8731F /* StoreTableViewCell.xib */; };
 		632DDD101FBE166C00FC0042 /* BluetoothLeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632DDD0F1FBE166C00FC0042 /* BluetoothLeService.swift */; };
 		632DDD131FBE17F300FC0042 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632DDD121FBE17F300FC0042 /* HomeTableViewCell.swift */; };
 		6357CE1C1FB5B1E0007E64D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6357CE1B1FB5B1E0007E64D5 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3CA9AE8A1FC206A100E8731F /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
+		3CA9AE8C1FC2078100E8731F /* StoreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreTableViewCell.xib; sourceTree = "<group>"; };
 		632DDD0F1FBE166C00FC0042 /* BluetoothLeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothLeService.swift; sourceTree = "<group>"; };
 		632DDD121FBE17F300FC0042 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		6357CE181FB5B1E0007E64D5 /* Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +58,9 @@
 		632DDD111FBE177400FC0042 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CA9AE8C1FC2078100E8731F /* StoreTableViewCell.xib */,
 				632DDD121FBE17F300FC0042 /* HomeTableViewCell.swift */,
+				3CA9AE8A1FC206A100E8731F /* HomeTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,7 +206,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6357CE261FB5B1E0007E64D5 /* LaunchScreen.storyboard in Resources */,
+				3CA9AE8D1FC2078100E8731F /* StoreTableViewCell.xib in Resources */,
 				6357CE231FB5B1E0007E64D5 /* Assets.xcassets in Resources */,
+				3CA9AE8B1FC206A100E8731F /* HomeTableViewCell.xib in Resources */,
 				6357CE211FB5B1E0007E64D5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,7 +363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M8D2DCWT9L;
+				DEVELOPMENT_TEAM = 6UBGL9DWPC;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -371,7 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M8D2DCWT9L;
+				DEVELOPMENT_TEAM = 6UBGL9DWPC;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
